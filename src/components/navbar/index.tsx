@@ -161,27 +161,98 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="flex items-center justify-center">
-          {/* <div className="relative w-full flex items-center">
-            <Search className="text-white absolute left-3" size={20} />
-            <input
-              type="text"
-              placeholder="Search Coins..."
-              className="bg-slate-950 border border-gray-800 w-full h-10 text-white pl-10 pr-4 rounded-2xl focus:outline-none focus:ring focus:border-primary"
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2">
+            <DropdownWithIcon
+              options={networks}
+              placeholder="Network"
+              value={network}
+              setValue={setNetwork}
             />
-          </div> */}
+            <WalletConnectSection />
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
-        <div className="flex items-center justify-end gap-4">
+
+        {/* Desktop Right Section */}
+        <div className="hidden lg:flex items-center justify-end gap-4">
           <DropdownWithIcon
             options={networks}
             placeholder="Select a Network"
             value={network}
             setValue={setNetwork}
           />
-
           <WalletConnectSection />
         </div>
       </div>
+      
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div 
+          ref={mobileMenuRef}
+          className="lg:hidden bg-slate-900 border-t border-slate-700 shadow-xl"
+        >
+          <div className="px-4 py-4 space-y-3">
+            <Link 
+              href="/swap" 
+              className="block py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Swap
+            </Link>
+            <Link 
+              href="/pool" 
+              className="block py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pool
+            </Link>
+            <Link 
+              href="/bridge" 
+              className="block py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Bridge
+            </Link>
+            <a 
+              href="https://dex.syncron.network/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>DEX</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a 
+              href="http://beta.syncron.network/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Exchange</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a 
+              href="http://v3.syncron.network/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between py-2 text-white hover:text-lime-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>U.S.</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
