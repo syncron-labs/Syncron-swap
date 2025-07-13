@@ -1,5 +1,5 @@
 "use client";
-import { Search, ChevronDown, ExternalLink } from "lucide-react";
+import { Search, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { DropdownWithIcon } from "../dropdowns/dropdownWithIcon";
@@ -17,7 +17,9 @@ import { toast } from "../ui/use-toast";
 export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);
   const [logoDropdownOpen, setLogoDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const logoDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const { switchToNetwork } = useWallet();
 
@@ -45,6 +47,9 @@ export default function Navbar() {
     const handleClickOutside = (event: MouseEvent) => {
       if (logoDropdownRef.current && !logoDropdownRef.current.contains(event.target as Node)) {
         setLogoDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
       }
     };
 
@@ -85,15 +90,15 @@ export default function Navbar() {
           : "transparent"
       } text-white fixed top-0 w-full z-10 mx-auto`}
     >
-      <div className="px-4 py-3 grid grid-cols-3 z-10  items-center justify-center">
+      <div className="px-4 py-3 flex items-center justify-between z-10">
         <div className="flex items-center">
           <div className="relative" ref={logoDropdownRef}>
             <button 
               onClick={() => setLogoDropdownOpen(!logoDropdownOpen)}
               className="text-3xl font-bold font-heading flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
-              <img className="h-9" src="/logo.webp" alt="logo" />
-              <ChevronDown className={`w-4 h-4 text-white transition-transform ${logoDropdownOpen ? 'rotate-180' : ''}`} />
+              <img className="h-8 md:h-9" src="/logo.webp" alt="logo" />
+              <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 text-white transition-transform ${logoDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
             
             {logoDropdownOpen && (
@@ -122,6 +127,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          {/* Desktop Navigation */}
           <ul className="hidden lg:flex gap-2 xl:gap-4 ml-6 xl:ml-10 items-center whitespace-nowrap">
             <li>
               <Link className="hover:text-gray-200 text-sm xl:text-base" href="/swap">

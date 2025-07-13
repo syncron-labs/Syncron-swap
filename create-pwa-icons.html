@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="downloadIcon(72)">Download 72x72</button>
+    <button onclick="downloadIcon(96)">Download 96x96</button>
+    <button onclick="downloadIcon(128)">Download 128x128</button>
+    <button onclick="downloadIcon(144)">Download 144x144</button>
+    <button onclick="downloadIcon(152)">Download 152x152</button>
+    <button onclick="downloadIcon(192)">Download 192x192</button>
+    <button onclick="downloadIcon(384)">Download 384x384</button>
+    <button onclick="downloadIcon(512)">Download 512x512</button>
+
+    <script>
+        function drawIcon(size) {
+            const canvas = document.getElementById('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Lime green circle
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.35;
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ccff00';
+            ctx.fill();
+            
+            // Add "S" text
+            ctx.fillStyle = '#000000';
+            ctx.font = `bold ${size * 0.4}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('S', centerX, centerY);
+        }
+        
+        function downloadIcon(size) {
+            drawIcon(size);
+            const canvas = document.getElementById('canvas');
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Draw initial icon
+        drawIcon(512);
+    </script>
+</body>
+</html>
