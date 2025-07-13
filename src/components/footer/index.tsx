@@ -1,4 +1,4 @@
-import { MoveRight } from "lucide-react";
+import { MoveRight, Twitter, MessageCircle, Globe, Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -116,11 +116,62 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Social Links Section */}
+        <div className="border-t border-slate-800 pt-8 pb-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://x.com/opencryptofdn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <Twitter className="w-5 h-5" />
+                  <span className="hidden sm:inline">Twitter</span>
+                </a>
+                <a
+                  href="https://t.me/ocfcommunity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span className="hidden sm:inline">Telegram</span>
+                </a>
+                <a
+                  href="https://opencryptofoundation.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <Globe className="w-5 h-5" />
+                  <span className="hidden sm:inline">Website</span>
+                </a>
+                <a
+                  href="https://github.com/syncron-labs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <Github className="w-5 h-5" />
+                  <span className="hidden sm:inline">GitHub</span>
+                </a>
+              </div>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-gray-500 text-xs mb-2">Powered by Open Crypto Foundation</p>
+              <p className="text-gray-500 text-xs">Building the future of DeFi</p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Footer */}
-        <div className="border-t border-slate-800 pt-8 pb-8">
+        <div className="border-t border-slate-800 pt-4 pb-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} Syncron Swap. All rights reserved.
+              &copy; {new Date().getFullYear()} Syncron Swap. All rights reserved.
             </p>
             <ul className="flex flex-wrap items-center gap-6 text-sm">
               {footerSections.legal.map((item, idx) => (
