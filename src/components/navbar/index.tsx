@@ -163,15 +163,7 @@ export default function Navbar() {
         </div>
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 lg:hidden">
-          <div className="flex items-center gap-2">
-            <DropdownWithIcon
-              options={networks}
-              placeholder="Network"
-              value={network}
-              setValue={setNetwork}
-            />
-            <WalletConnectSection />
-          </div>
+          <WalletConnectSection />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
@@ -199,6 +191,16 @@ export default function Navbar() {
           className="lg:hidden bg-slate-900 border-t border-slate-700 shadow-xl"
         >
           <div className="px-4 py-4 space-y-3">
+            {/* Network Selector in Mobile Menu */}
+            <div className="pb-3 border-b border-slate-700">
+              <p className="text-gray-400 text-sm mb-2">Select Network:</p>
+              <DropdownWithIcon
+                options={networks}
+                placeholder="Select a Network"
+                value={network}
+                setValue={setNetwork}
+              />
+            </div>
             <Link 
               href="/swap" 
               className="block py-2 text-white hover:text-lime-400 transition-colors"

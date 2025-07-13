@@ -45,21 +45,21 @@ export function DropdownWithIcon({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`w-[200px] justify-between border border-slate-900 ${className}`}
+          className={`w-[200px] sm:w-[160px] md:w-[200px] justify-between border border-slate-900 ${className}`}
         >
-          <div className="flex items-center">
+          <div className="flex items-center min-w-0">
             <img
               src={String(options.find((Basic) => Basic.value == value)?.icon)}
-              className="w-3 mr-2 shrink-0"
+              className="w-3 mr-1 sm:mr-2 shrink-0"
               alt=""
             />
-            <span>
+            <span className="truncate text-xs sm:text-sm">
               {value
                 ? options.find((Basic) => Basic.value == value)?.label
                 : placeholder}
             </span>
           </div>
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50 " />
+          <ChevronsUpDown className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0 border border-slate-900 ">
